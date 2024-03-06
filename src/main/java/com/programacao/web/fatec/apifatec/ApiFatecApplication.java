@@ -15,7 +15,7 @@ public class ApiFatecApplication {
 	String home() {
 		return "Hello World";
 	}
-	
+	/*
 	@RequestMapping("/hello")
 	String home2() {
 		return "Hello World 2";
@@ -32,6 +32,41 @@ public class ApiFatecApplication {
 			Integer num
 			) {
 		return num;
+	}
+	*/
+	
+	@RequestMapping("/analizaIdade")
+		String homeAnalizaIdade() {
+			return "Insira a idade:"; 
+		}
+	
+	@RequestMapping("/analizaIdade/{idade}")
+		
+		String AnalizaIdade(@PathVariable int idade) {
+			/*try {*/
+				/*int idade = Integer.parseInt(idade_string);*/
+				if(idade >= 0 && idade < 12) {
+					return "Criança";
+				}
+				else if(idade >= 12 && idade <= 18) {
+					return "Aborrecente";
+				}
+				else if(idade >= 19 && idade <= 60) {
+					return "Adulto";
+				}
+				else if(idade > 60) {
+					return "Idoso";
+				}
+				else {
+					return "Idade inválida";
+				}
+			/*}
+			catch(NumberFormatException nf){
+				return "Formato errado";
+			}
+			*/
+			
+			
 	}
 	
 	public static void main(String[] args) {
