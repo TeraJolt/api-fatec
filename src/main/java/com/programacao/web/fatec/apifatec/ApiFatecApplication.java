@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.programacao.web.fatec.apifatec.controller.exercicios.AnimalController;
+
 
 @RestController
 @SpringBootApplication
@@ -15,6 +17,16 @@ public class ApiFatecApplication {
 	String home() {
 		return "Hello World";
 	}
+	/*
+	@RequestMapping("/animal/{types}")
+	String animal() {
+		AnimalController animalController = new AnimalController();
+		String types(@PathVariable String types) {
+			animalController.getAnimalSounds(null)
+			return
+		}
+		
+	}*/
 	/*
 	@RequestMapping("/hello")
 	String home2() {
@@ -34,7 +46,7 @@ public class ApiFatecApplication {
 		return num;
 	}
 	*/
-	
+	/*
 	@RequestMapping("/analizaIdade")
 		String homeAnalizaIdade() {
 			return "Insira a idade:"; 
@@ -45,7 +57,8 @@ public class ApiFatecApplication {
 		String AnalizaIdade(@PathVariable int idade) {
 			/*try {*/
 				/*int idade = Integer.parseInt(idade_string);*/
-				if(idade >= 0 && idade < 12) {
+				
+				/*if(idade >= 0 && idade < 12) {
 					return "Criança";
 				}
 				else if(idade >= 12 && idade <= 18) {
@@ -59,18 +72,18 @@ public class ApiFatecApplication {
 				}
 				else {
 					return "Idade inválida";
-				}
+				}*/
 			/*}
 			catch(NumberFormatException nf){
 				return "Formato errado";
 			}
 			*/
 			
-			
-	}
-	
+	/*		
+	}*/
 	public static void main(String[] args) {
 		SpringApplication.run(ApiFatecApplication.class, args);
+		AnimalController animalController = new AnimalController();
 	}
 
 }
