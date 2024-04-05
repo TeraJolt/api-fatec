@@ -1,5 +1,7 @@
 package br.com.api.fatec.apifatec;
 
+import br.com.api.fatec.apifatec.domain.produto.ProdutoRepository;
+import br.com.api.fatec.apifatec.entities.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +14,7 @@ import br.com.api.fatec.apifatec.entities.Cliente;
 @SpringBootApplication
 public class ApiFatecApplication {
 	@Bean
-	public CommandLineRunner run(@Autowired ClienteRepository clienteRepository) {
+	public CommandLineRunner run(@Autowired ClienteRepository clienteRepository, @Autowired ProdutoRepository produtoRepository) {
 		return args -> {
 			Cliente cliente = new Cliente();
 			cliente.setNome("Danilo");
@@ -29,6 +31,14 @@ public class ApiFatecApplication {
 			cliente2.setRazaoSocial("Arthur");
 			
 			clienteRepository.save(cliente2);
+
+			Produto produto = new Produto();
+			produto.setNome("Coca-cola");
+			produto.setDescricao("Refrigerante de Cola");
+			produto.setPreco(3.15);
+			produto.setQtdEstoque(20);
+
+			produtoRepository.save(produto);
 		};
 	}
 	

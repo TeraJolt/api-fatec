@@ -11,20 +11,29 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 
-	public List<Cliente> listarClientes() {
+	public List<Cliente> listarClientes()
+	{
 		return clienteRepository.findAll();
 	}
 
-	public Cliente encontrarClientePorId(Long id) {
+	public Cliente encontrarClientePorId(Long id)
+	{
 		return clienteRepository.findById(id).orElse(null);
 	}
 
-	public Cliente salvarCliente(Cliente cliente) {
+	public Cliente salvarCliente(Cliente cliente)
+	{
 		return clienteRepository.save(cliente);
 	}
 
 	public void deletarCliente(Long id) {
-		clienteRepository.deleteById(id);
+
+		//clienteRepository.deleteById(id);
+		if (encontrarClientePorId(id) != null){
+			clienteRepository.deleteById(id);
+		}else {
+			throw new IllegalArgumentException("Cliente informado não existe");
+		}
 	}
 	
 	public Cliente atualizarCliente(Long id, Cliente cliente) {

@@ -1,27 +1,10 @@
-package br.com.api.fatec.apifatec.entities;
+package br.com.api.fatec.apifatec.domain.produto;
 
-
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "produtos")
-public class Produto {
-
-    //nome, descrição, preço, quantidade em estoque.
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProdutoDTO {
     private Long id;
-
-    @Column(nullable = false, length = 60)
     private String nome;
-
-    @Column(nullable = false, length = 120)
     private String descricao;
-
-    @Column(nullable = false)
     private double preco;
-
-    @Column(name="quantidade-em-estoque")
     private int qtdEstoque;
 
     public Long getId() {
