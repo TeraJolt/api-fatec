@@ -1,61 +1,92 @@
 package br.com.api.fatec.apifatec.entities;
 
-import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pedido_venda")
 public class PedidoVenda {
-
-    //id, id_cliente, data
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private int id_cliente;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
-    @Column(nullable = false)
-    private String emissao;
+    @Column(name = "emissao")
+    private LocalDate emissao;
 
-    @Column(nullable = false)
-    private double total;
+    @Column(precision = 20, scale = 2)
+    private BigDecimal total;
 
-    @Column(nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private PedidoVendaStatusEnum status;
 
-    public Long getId(){
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoVenda", orphanRemoval = true)
+    private List<PedidoVendaItem> items = new ArrayList<>();
+
+    public Long getId() {
         return id;
     }
-    public void setId(Long id){
+
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getId_cliente(){
-        return id_cliente;
-    }
-    public void setId_cliente(int id_cliente){
-        this.id_cliente = id_cliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public String getEmissao(){
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public LocalDate getEmissao() {
         return emissao;
     }
-    public void setEmissao(String emissao){
+
+    public void setEmissao(LocalDate emissao) {
         this.emissao = emissao;
     }
 
-    public double getTotal(){
+    public BigDecimal getTotal() {
         return total;
     }
-    public void setTotal(double total){
+
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    public String getStatus(){
+    public PedidoVendaStatusEnum getStatus() {
         return status;
     }
-    public void setStatus(String status){
+
+    public void setStatus(PedidoVendaStatusEnum status) {
         this.status = status;
     }
-}
 
+    public List<PedidoVendaItem> getItems() {
+        return items;
+    }
+
+    public void addItem(PedidoVendaItem item) {
+        this.items.add(item);
+        item.setPedidoVenda(this);
+    }
+}

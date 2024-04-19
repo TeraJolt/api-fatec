@@ -11,7 +11,7 @@ public class PedidoVendaMapper {
     public static PedidoVenda toEntity(PedidoVendaDTO dto){
         PedidoVenda pedido = new PedidoVenda();
         pedido.setId(dto.getId());
-        pedido.setId_cliente(dto.getId_cliente());
+        pedido.setCliente(dto.getCliente());
         pedido.setEmissao(dto.getEmissao());
         pedido.setTotal(dto.getTotal());
         pedido.setStatus(dto.getStatus());
@@ -21,7 +21,7 @@ public class PedidoVendaMapper {
     public static PedidoVendaDTO toDTO(PedidoVenda pedido){
         PedidoVendaDTO dto = new PedidoVendaDTO();
         dto.setId(pedido.getId());
-        dto.setId_cliente(pedido.getId_cliente());
+        dto.setCliente(pedido.getCliente());
         dto.setEmissao(pedido.getEmissao());
         dto.setTotal(pedido.getTotal());
         dto.setStatus(pedido.getStatus());

@@ -2,6 +2,9 @@ package br.com.api.fatec.apifatec;
 
 import br.com.api.fatec.apifatec.domain.produto.ProdutoRepository;
 import br.com.api.fatec.apifatec.entities.Produto;
+
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,12 +12,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import br.com.api.fatec.apifatec.domain.cliente.ClienteRepository;
+import br.com.api.fatec.apifatec.domain.pedidoVenda.PedidoVendaRepository;
 import br.com.api.fatec.apifatec.entities.Cliente;
+import br.com.api.fatec.apifatec.entities.PedidoVenda;
 
 @SpringBootApplication
 public class ApiFatecApplication {
 	@Bean
-	public CommandLineRunner run(@Autowired ClienteRepository clienteRepository, @Autowired ProdutoRepository produtoRepository) {
+	public CommandLineRunner run(@Autowired ClienteRepository clienteRepository, @Autowired ProdutoRepository produtoRepository, @Autowired PedidoVendaRepository pedidoVendaRepository) {
 		return args -> {
 			Cliente cliente = new Cliente();
 			cliente.setNome("Danilo");
@@ -39,6 +44,12 @@ public class ApiFatecApplication {
 			produto.setQtdEstoque(20);
 
 			produtoRepository.save(produto);
+
+			PedidoVenda pedidoVenda = new PedidoVenda();
+			pedidoVenda.setCliente(cliente2);
+			pedidoVenda.setEmissao(null);
+			pedidoVenda.setStatus(null);
+			pedidoVenda.setTotal(null);
 		};
 	}
 	

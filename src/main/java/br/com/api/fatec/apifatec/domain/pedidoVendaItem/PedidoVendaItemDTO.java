@@ -1,41 +1,17 @@
-package br.com.api.fatec.apifatec.entities;
+package br.com.api.fatec.apifatec.domain.pedidoVendaItem;
 
 import java.math.BigDecimal;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import br.com.api.fatec.apifatec.entities.PedidoVenda;
+import br.com.api.fatec.apifatec.entities.Produto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "pedido_venda_item")
-public class PedidoVendaItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PedidoVendaItemDTO {
     private Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "pedido_venda_id")
-    @JsonIgnore
     private PedidoVenda pedidoVenda;
-
-    @ManyToOne
-    @JoinColumn(name = "produto_id")
     private Produto produto;
-
     private Integer quantidade;
-
-    @Column(name = "valor_unitario", precision = 12, scale = 2)
     private BigDecimal valorUnitario;
-
-    @Column(name = "valor_total", precision = 12, scale = 2)
-    private BigDecimal valorTotal;
+    private BigDecimal valorTotal; 
 
     public Integer getId() {
         return id;
@@ -85,3 +61,4 @@ public class PedidoVendaItem {
         this.valorTotal = valorTotal;
     }
 }
+

@@ -1,44 +1,67 @@
 package br.com.api.fatec.apifatec.domain.pedidoVenda;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.api.fatec.apifatec.entities.Cliente;
+import br.com.api.fatec.apifatec.entities.PedidoVendaItem;
+import br.com.api.fatec.apifatec.entities.PedidoVendaStatusEnum;
+
 public class PedidoVendaDTO {
     private Long id;
-    private int id_cliente;
-    private String emissao;
-    private double total;
-    private String status;
+    private Cliente cliente;
+    private LocalDate emissao;
+    private BigDecimal total;
+    private PedidoVendaStatusEnum status;
+    private List<PedidoVendaItem> items = new ArrayList<>();
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
-    public void setId(Long id){
+
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getId_cliente(){
-        return id_cliente;
-    }
-    public void setId_cliente(int id_cliente){
-        this.id_cliente = id_cliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public String getEmissao(){
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public LocalDate getEmissao() {
         return emissao;
     }
-    public void setEmissao(String emissao){
+
+    public void setEmissao(LocalDate emissao) {
         this.emissao = emissao;
     }
 
-    public double getTotal(){
+    public BigDecimal getTotal() {
         return total;
     }
-    public void setTotal(double total){
+
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    public String getStatus(){
+    public PedidoVendaStatusEnum getStatus() {
         return status;
     }
-    public void setStatus(String status){
+
+    public void setStatus(PedidoVendaStatusEnum status) {
         this.status = status;
     }
-}   
+
+    public List<PedidoVendaItem> getItems() {
+        return items;
+    }
+
+    public void addItem(PedidoVendaItem item) {
+        this.items.add(item);
+    }
+}

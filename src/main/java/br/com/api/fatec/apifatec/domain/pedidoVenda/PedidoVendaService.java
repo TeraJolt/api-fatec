@@ -37,7 +37,7 @@ public class PedidoVendaService {
             return null;
         }
         else{
-            pedidoCadastradoPedido.setId_cliente(pedido.getId_cliente());
+            pedidoCadastradoPedido.setCliente(pedido.getCliente());
             pedidoCadastradoPedido.setEmissao(pedido.getEmissao());
             pedidoCadastradoPedido.setTotal(pedido.getTotal());
             pedidoCadastradoPedido.setStatus(pedido.getStatus());
