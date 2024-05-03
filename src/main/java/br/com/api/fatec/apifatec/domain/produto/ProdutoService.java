@@ -1,45 +1,51 @@
 package br.com.api.fatec.apifatec.domain.produto;
 
-import br.com.api.fatec.apifatec.entities.Produto;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import br.com.api.fatec.apifatec.entities.Produto;
 
 @Service
 public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    public List<Produto> listarProdutos(){
+    public List<Produto> listarProdutos() {
         return produtoRepository.findAll();
     }
-    public Produto encontrarProdutoPorId(Long id){
+
+    public Produto encontrarProdutoPorId(Long id) {
         return produtoRepository.findById(id).orElse(null);
     }
-    public Produto salvarProduto(Produto produto){
-        return produtoRepository.save(produto);
-    }
-    public void deletarProduto(Long id){
-        if (encontrarProdutoPorId(id) != null){
-            produtoRepository.deleteById(id);
-        }
-        else {
-            throw new IllegalArgumentException("Produto informado não existe");
-        }
+
+    public Produto salvarProduto(Produto Produto) {
+        return produtoRepository.save(Produto);
     }
 
-    public Produto atualizarProduto(Long id, Produto produto){
-        Produto produtoCadastradoProduto = encontrarProdutoPorId(id);
+    public void deletarProduto(Long id) {
+        Produto Produto = encontrarProdutoPorId(id);
 
-        if(produtoCadastradoProduto == null){
+        if(Produto == null)
+            throw new IllegalArgumentException("Produto nao existe");
+
+
+        produtoRepository.deleteById(id);
+    }
+
+    public Produto atualizarProduto(Long id, Produto produto) {
+        Produto ProdutoCadastrado = encontrarProdutoPorId(id);
+
+        if (ProdutoCadastrado == null)
+        {
             return null;
-        }else {
-            produtoCadastradoProduto.setNome(produto.getNome());
-            produtoCadastradoProduto.setDescricao(produto.getDescricao());
-            produtoCadastradoProduto.setPreco(produto.getPreco());
-            produtoCadastradoProduto.setQtdEstoque(produto.getQtdEstoque());
-            return produtoRepository.save(produtoCadastradoProduto);
+        } else {
+            ProdutoCadastrado.setDescricao(produto.getDescricao());
+            ProdutoCadastrado.setPreco(produto.getPreco());
+            ProdutoCadastrado.setQuantidadeEstoque(produto.getQuantidadeEstoque());
+            ProdutoCadastrado.setAtivo(produto.getAtivo());
+            return produtoRepository.save(ProdutoCadastrado);
         }
     }
 }

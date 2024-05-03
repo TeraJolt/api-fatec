@@ -1,28 +1,32 @@
 package br.com.api.fatec.apifatec.entities;
 
+import java.math.BigDecimal;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "produtos")
 public class Produto {
-
-    //nome, descrição, preço, quantidade em estoque.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 60)
-    private String nome;
-
-    @Column(nullable = false, length = 120)
     private String descricao;
 
-    @Column(nullable = false)
-    private double preco;
+    @Column(nullable = false, precision = 12, scale = 3)
+    private BigDecimal preco;
 
-    @Column(name="quantidade-em-estoque")
-    private int qtdEstoque;
+    @Column(name = "quantidade_estoque")
+    private Integer quantidadeEstoque;
+
+    @Column()
+    private String ativo;
 
     public Long getId() {
         return id;
@@ -30,14 +34,6 @@ public class Produto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getDescricao() {
@@ -48,19 +44,27 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
-    public int getQtdEstoque() {
-        return qtdEstoque;
+    public Integer getQuantidadeEstoque() {
+        return quantidadeEstoque;
     }
 
-    public void setQtdEstoque(int qtdEstoque) {
-        this.qtdEstoque = qtdEstoque;
+    public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public String getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
     }
 }
